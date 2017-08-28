@@ -14,10 +14,22 @@ export interface PaymentExport {
 }
 
 export interface PaymentImport {
-    type: 1 | 2 | 3 | 4
+    type: ImportLineType
     ls: string
     code: string
     dateoper: string
     val: string
     note: string
+}
+
+export enum ImportFileType {
+    Accounts = 'L',
+    Payments = 'P',
+}
+
+export enum ImportLineType {
+    Account = 1,
+    Counter = 2,
+    Payment = 3,
+    Reading = 4,
 }

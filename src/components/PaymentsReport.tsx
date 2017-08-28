@@ -3,11 +3,13 @@ import * as electron from 'electron'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as AdmZip from 'adm-zip'
+import * as uuid from 'uuid'
 import { parsePaymentExport, parseFile, convertPayment, prepareFile } from "../services/payment-processing";
-import { PaymentExport } from "../models/payment";
+import { PaymentExport, ImportFileType } from "../models/payment";
+import { Settings } from "../models/settings";
 
 interface Props {
-
+    settings: Settings
 }
 
 interface State {
@@ -77,7 +79,7 @@ export class PaymentsReportComponent extends React.Component<Props, State> {
 
     handleExport() {
         const file = electron.remote.dialog.showSaveDialog({
-
+            defaultPath: `${ImportFileType.Payments}_${this.props.settings.inn}_${uuid()}.csv`
         })
         if (!file) { return }
 

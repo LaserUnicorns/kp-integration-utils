@@ -1,5 +1,5 @@
 import * as iconv from 'iconv-lite'
-import { PaymentExport, PaymentImport } from "../models/payment";
+import { PaymentExport, PaymentImport, ImportLineType } from "../models/payment";
 
 export function parsePaymentExport(line: string): PaymentExport {
     const [
@@ -43,7 +43,7 @@ export function prepareFile(lines: string[]): Buffer {
 
 export function convertPayment(payment: PaymentExport): PaymentImport {
     return {
-        type: 3,
+        type: ImportLineType.Payment,
         ls: payment.account,
         code: '',
         dateoper: payment.date.replace(/\-/g, '.'),
