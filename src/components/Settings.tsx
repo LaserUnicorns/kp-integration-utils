@@ -67,6 +67,12 @@ export class SettingsComponent extends React.Component<Props, State> {
                         </div>
                     </div>
                     <div className="form-group row">
+                        <label htmlFor="rs" className="col-form-label col-2">Р/счет</label>
+                        <div className="col-6">
+                            <input type="number" className="form-control" id="rs" placeholder="Р/счет" value={this.state.settings.rs} onChange={this.handleChange} />
+                        </div>
+                    </div>
+                    <div className="form-group row" hidden>
                         <label htmlFor="ks" className="col-form-label col-2">К/счет</label>
                         <div className="col-6">
                             <input type="number" className="form-control" id="ks" placeholder="К/счет" value={this.state.settings.ks} onChange={this.handleChange} />

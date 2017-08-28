@@ -19,6 +19,7 @@ export class App extends React.Component<{}, AppState> {
             settings: {
                 inn: '',
                 ks: '',
+                rs: '',
             }
         }
 
@@ -56,7 +57,7 @@ export class App extends React.Component<{}, AppState> {
 
                     <div className="my-3">
                         {/* <Route path="/debt-report" component={DebtReportComponent} /> */}
-                        <Route path="/payments" component={PaymentsReportComponent} />
+                        <Route path="/payments" render={props => <PaymentsReportComponent settings={this.state.settings} />} />
                         <Route path="/settings" render={props => <SettingsComponent settings={this.state.settings} onSettingsChanged={this.handleSettingsChange} />} />
                     </div>
                 </div>

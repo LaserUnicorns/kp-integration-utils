@@ -3,6 +3,7 @@ import { Settings } from "../models/settings";
 const defaultSettings: Settings = {
     inn: '',
     ks: '',
+    rs: '',
 }
 
 export async function getSettings() {
