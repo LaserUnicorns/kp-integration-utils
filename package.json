@@ -1,0 +1,36 @@
+{
+  "name": "kp-integration-utils",
+  "private": true,
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"webpack --watch\" \"electron .\" "
+  },
+  "dependencies": {
+    "@types/adm-zip": "^0.4.31",
+    "adm-zip": "^0.4.7",
+    "bootstrap": "4.0.0-beta",
+    "electron": "^1.7.5",
+    "iconv-lite": "^0.4.18",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.3",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "@types/bootstrap": "^3.3.36",
+    "@types/iconv-lite": "^0.0.1",
+    "@types/jquery": "^3.2.12",
+    "@types/node": "^8.0.25",
+    "@types/popper.js": "^1.10.0",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "@types/react-router-dom": "^4.0.7",
+    "concurrently": "^3.5.0",
+    "ts-loader": "^2.3.4",
+    "typescript": "^2.4.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
