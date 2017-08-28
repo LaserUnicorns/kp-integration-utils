@@ -1,6 +1,5 @@
 import * as React from "react";
 import { HashRouter as Router, Route, NavLink as Link } from 'react-router-dom'
-import { DebtReportComponent } from "./DebtReport";
 import { SettingsComponent } from "./Settings";
 import { Settings } from "../models/settings";
 import { getSettings, saveSettings } from "../services/settings-service";
