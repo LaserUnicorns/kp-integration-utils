@@ -17,8 +17,10 @@ function createWindow () {
     slashes: true
   }))
 
-  // Open the DevTools.
-  win.webContents.openDevTools()
+  if (process.env.__DEV__) {
+    // Open the DevTools.
+    win.webContents.openDevTools()
+  }
 
   // Emitted when the window is closed.
   win.on('closed', () => {
