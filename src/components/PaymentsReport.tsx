@@ -1,11 +1,8 @@
 import * as React from 'react'
 import * as electron from 'electron'
 import * as fs from 'fs'
-import * as path from 'path'
-import * as AdmZip from 'adm-zip'
-import * as uuid from 'uuid'
-import { parsePaymentExport, parseFile, convertPayment, prepareFile } from "../services/payment-processing";
-import { PaymentExport, ImportFileType } from "../models/payment";
+import { prepareImportFile, parseArchive, getImportFileName } from "../services/payment-processing";
+import { PaymentExport } from "../models/payment";
 import { Settings } from "../models/settings";
 import { PaymentsTableComponent } from "./PaymentsTable";
 
@@ -41,13 +38,7 @@ export class PaymentsReportComponent extends React.Component<Props, State> {
         })
         if (!archive) { return }
 
-        const zip = new AdmZip(archive[0])
-
-        const lines = zip.getEntries()
-            .map(entry => parseFile(entry.getData()))
-            .reduce((total, file) => total.concat(file), [])
-
-        const payments = lines.map(line => parsePaymentExport(line))
+        const payments = parseArchive(archive[0])
 
         this.setState({
             payments,
@@ -56,15 +47,11 @@ export class PaymentsReportComponent extends React.Component<Props, State> {
 
     handleExport() {
         const file = electron.remote.dialog.showSaveDialog({
-            defaultPath: `${ImportFileType.Payments}_${this.props.settings.inn}_${uuid()}.csv`
+            defaultPath: getImportFileName(this.props.settings)
         })
         if (!file) { return }
 
-        const lines = this.state.payments
-            .map(convertPayment)
-            .map(p => [p.type, p.ls, p.code, p.dateoper, p.val, p.note].join(';'))
-
-        fs.writeFileSync(file, prepareFile(lines))
+        fs.writeFileSync(file, prepareImportFile(this.state.payments))
     }
 
     handleAdditionalInfoChange(ev: React.SyntheticEvent<HTMLInputElement>) {
