@@ -9,7 +9,7 @@
     "build:prod": "cross-env __PROD__=true webpack --env.prod -p"
   },
   "dependencies": {
-    "adm-zip": "^0.4.7",
+    "adm-zip": "^0.4.11",
     "bootstrap": "4.0.0-beta",
     "electron": "^1.7.5",
     "iconv-lite": "^0.4.18",
